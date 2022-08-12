@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="nomina">
+  <ClassDiagramComponents>
+    <Class name="Empleado" package="" visibility="public" xPosition="48.0" yPosition="333.0">
+      <Fields>
+        <Field name="Dni" type="String" visibility="private"/>
+        <Field name="Nombres" type="String" visibility="private"/>
+        <Field name="Apellidos" type="String" visibility="private"/>
+        <Field name="Telefono" type="int" visibility="private"/>
+        <Field name="Direccion" type="String" visibility="private"/>
+        <Field name="Id" type="int" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActualizacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Contrato" package="" visibility="public" xPosition="757.0" yPosition="342.0">
+      <Fields>
+        <Field name="fechaAlta" type="Date" visibility="private"/>
+        <Field name="fechaBaja" type="Date" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="categoria" type="Categoria" visibility="private"/>
+        <Field name="complemento" type="Complemento" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActualizacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Categoria" package="" visibility="public" xPosition="250.0" yPosition="36.0">
+      <Fields>
+        <Field name="Id" type="int" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="sueldoBasico" type="Double" visibility="private"/>
+        <Field name="puestoDestino" type="String" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActualizacoion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Complemento" package="" visibility="public" xPosition="757.0" yPosition="36.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+        <Field name="valor" type="double" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActualizacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Nomina" package="" visibility="public" xPosition="48.0" yPosition="603.0">
+      <Fields>
+        <Field name="Id" type="int" visibility="private"/>
+        <Field name="Encargado" type="String" visibility="private"/>
+        <Field name="totalApagar" type="double" visibility="private"/>
+        <Field name="corteMes" type="Date" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActualizacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Detalle_Nomina_Empleado" package="" visibility="public" xPosition="565.0" yPosition="603.0">
+      <Fields>
+        <Field name="empleado" type="Empleado" visibility="private"/>
+        <Field name="nomina" type="Nomina" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="deduccion" type="Deduccion" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActulizacion" type="Date" visibility="private"/>
+        <Field name="responsable" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="SueldoDevengado" returnType="void" visibility="public"/>
+        <Method name="Trienios" returnType="void" visibility="public"/>
+        <Method name="IRPF" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Deduccion" package="" visibility="public" xPosition="587.0" yPosition="972.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+        <Field name="fechaActualizacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Detalle_contrato_empleado" package="" visibility="public" xPosition="407.0" yPosition="361.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="contrato" type="Contrato" visibility="private"/>
+        <Field name="empleado" type="Empleado" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="fechaActualizacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="tiene" source="Nomina" target="Detalle_Nomina_Empleado" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="tiene" source="Contrato" target="Complemento" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="tiene" source="Contrato" target="Detalle_contrato_empleado" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="tiene" source="Empleado" target="Detalle_contrato_empleado" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <UseRelation name="" source="Deduccion" target="Detalle_Nomina_Empleado" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="Empleado" target="Detalle_Nomina_Empleado" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="tiene" source="Contrato" target="Categoria" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
